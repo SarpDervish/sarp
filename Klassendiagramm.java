@@ -1,65 +1,92 @@
-@startuml
-class Bibliothek {
-    -name: String
-    -standorte: List<Standort>
+public class Bibliothek {
+    private String name;
+    private List<Standort> standorte;
 
-    +Bibliothek(name: String, standorte: List<Standort>)
+    public Bibliothek(String name, List<Standort> standorte) {
+        this.name = name;
+        this.standorte = standorte;
+    }
 }
 
-class Standort {
-    -name: String
-    -adresse: Adresse
-    -abteilungen: List<Abteilung>
+public class Standort {
+    private String name;
+    private Adresse adresse;
+    private List<Abteilung> abteilungen;
 
-    +Standort(name: String, adresse: Adresse, abteilungen: List<Abteilung>)
+    public Standort(String name, Adresse adresse, List<Abteilung> abteilungen) {
+        this.name = name;
+        this.adresse = adresse;
+        this.abteilungen = abteilungen;
+    }
 }
 
-class Adresse {
-    -name: String
-    -strasse: String
-    -hausnummer: int
-    -plz: int
-    -stadt: String
+public class Adresse {
+    private String name;
+    private String strasse;
+    private int hausnummer;
+    private int plz;
+    private String stadt;
 
-    +Adresse(name: String, strasse: String, hausnummer: int, plz: int, stadt: String)
+    public Adresse(String name, String strasse, int hausnummer, int plz, String stadt) {
+        this.name = name;
+        this.strasse = strasse;
+        this.hausnummer = hausnummer;
+        this.plz = plz;
+        this.stadt = stadt;
+    }
 }
 
-class Abteilung {
-    -name: String
-    -stockwerk: int
-    -regale: List<Regal>
+public class Abteilung {
+    private String name;
+    private int stockwerk;
+    private List<Regal> regale;
 
-    +Abteilung(name: String, stockwerk: int, regale: List<Regal>)
+    public Abteilung(String name, int stockwerk, List<Regal> regale) {
+        this.name = name;
+        this.stockwerk = stockwerk;
+        this.regale = regale;
+    }
 }
 
-class Regal {
-    -nummer: int
-    -themen: List<String>
-    -buecher: List<Buch>
+public class Regal {
+    private int nummer;
+    private List<String> themen;
+    private List<Buch> buecher;
 
-    +Regal(nummer: int, themen: List<String>)
-    +buchHinzufuegen(buch: Buch): boolean
-    +buchEntfernen(buch: Buch): Buch
+    public Regal(int nummer, List<String> themen) {
+        this.nummer = nummer;
+        this.themen = themen;
+    }
+
+    public boolean buchHinzufuegen(Buch buch) {
+        // ...
+    }
+
+    public Buch buchEntfernen(Buch buch) {
+        // ...
+    }
 }
 
-class Buch {
-    -titel: String
-    -beschreibung: String
-    -autor: String
-    -jahr: int
+public class Buch {
+    private String titel;
+    private String beschreibung;
+    private String autor;
+    private int jahr;
 
-    +Buch(titel: String, beschreibung: String, autor: String, jahr: int)
+    public Buch(String titel, String beschreibung, String autor, int jahr) {
+        this.titel = titel;
+        this.beschreibung = beschreibung;
+        this.autor = autor;
+        this.jahr = jahr;
+    }
 }
 
-class Sachbuch {
-    -fachbereich: String
+public class Sachbuch extends Buch {
+    private String fachbereich;
 
-    +Sachbuch(titel: String, beschreibung: String, autor: String, jahr: int, fachbereich: String)
+    public Sachbuch(String titel, String beschreibung, String autor, int jahr, String fachbereich) {
+        super(titel, beschreibung, autor, jahr);
+        this.fachbereich = fachbereich;
+    }
 }
 
-Bibliothek "1" *-- "*" Standort
-Standort "1" *-- "*" Abteilung
-Abteilung "1" *-- "*" Regal
-Regal "1" *-- "*" Buch
-Buch <|-- Sachbuch
-@enduml
