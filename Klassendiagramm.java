@@ -1,3 +1,5 @@
+import java.util.List;
+
 public class Bibliothek {
     private String name;
     private List<Standort> standorte;
@@ -56,14 +58,17 @@ public class Regal {
     public Regal(int nummer, List<String> themen) {
         this.nummer = nummer;
         this.themen = themen;
+        this.buecher = new ArrayList<>();
     }
 
     public boolean buchHinzufuegen(Buch buch) {
         // ...
+        return true;
     }
 
     public Buch buchEntfernen(Buch buch) {
         // ...
+        return null;
     }
 }
 
@@ -89,4 +94,3 @@ public class Sachbuch extends Buch {
         this.fachbereich = fachbereich;
     }
 }
-
